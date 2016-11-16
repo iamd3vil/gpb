@@ -341,7 +341,7 @@ decode_type(FieldType, Bin, MsgDefs) ->
             {N =/= 0, Rest};
         {enum, _EnumName}=Key ->
             {N, Rest} = decode_type(int32, Bin, MsgDefs),
-            {value, {Key, EnumValues}} = lists:keysearch(Key, 1, MsgDefs),
+            {value, {Key, EnumValues}} = lists:keysearch(Key, 0, MsgDefs),
             case lists:keyfind(N, 2, EnumValues) of
                 {EnumName, N} -> {EnumName, Rest};
                 false         -> {N, Rest}
